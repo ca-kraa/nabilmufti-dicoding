@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-data = pd.read_csv('day.csv')
+data = pd.read_csv('dashboard/main_data.csv')
 
 data.drop_duplicates(inplace=True)
 
