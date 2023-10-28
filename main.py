@@ -3,6 +3,16 @@ import pandas as pd
 
 data = pd.read_csv('day.csv')
 
+data.drop_duplicates(inplace=True)
+
+numerical_features = data.select_dtypes(include=['int64', 'float64']).columns
+for feature in numerical_features:
+    data[feature].fillna(data[feature].mean(), inplace=True)
+
+categorical_features = data.select_dtypes(include=['object']).columns
+for feature in categorical_features:
+    data[feature].fillna(data[feature].mode()[0], inplace=True)
+
 st.title('Streamlit Dashboard - Submission Dicoding')
 
 st.sidebar.header('Options')
